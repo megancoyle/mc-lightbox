@@ -1,0 +1,92 @@
+/* Basic styles for the gallery */
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .gallery img {
+    max-width: 100%;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  
+  .gallery img:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Styles for the lightbox */
+  .lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    z-index: 1000; /* Ensure the lightbox is on top */
+    overflow: auto; /* Allow scrolling within the lightbox */
+  }
+  
+  .lightbox img {
+    width: auto; /* Allow the image to maintain its natural width */
+    height: auto; /* Allow the image to maintain its natural height */
+    max-width: 90%; /* Shrink the image only if it is too wide for the viewport */
+    max-height: 90%; /* Ensure image fits within the viewport vertically */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+    margin: auto; /* Center the image even if it is smaller than the lightbox */
+  }
+  
+  /* Class to show the lightbox */
+  .lightbox.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  /* Class to disable background scrolling */
+  .disable-scroll {
+    overflow: hidden;
+  }
+  
+  /* Close button in the lightbox */
+  .lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    z-index: 1100; /* Ensure close button is on top of other elements */
+  }
+  
+  /* Styles for the navigation arrows */
+  .lightbox .prev,
+  .lightbox .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 50px;
+    cursor: pointer;
+    user-select: none;
+    z-index: 1100; /* Ensure navigation arrows are on top of other elements */
+  }
+  
+  .lightbox .prev {
+    left: 10px;
+  }
+  
+  .lightbox .next {
+    right: 10px;
+  }
+  
+  /* Utils */
+  .hidden {
+    display: none;
+  }
+  

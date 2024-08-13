@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MC Lightbox</title>
+    <link rel="stylesheet" href="./lightbox.css" />
+    <script type="text/javascript" src="./lightbox.js"></script>
+  </head>
+  <body>
+    <h1>Demo MC Lightbox Gallery</h1>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean pulvinar,
+      metus nec vulputate placerat, tortor nulla finibus nunc, vitae varius eros
+      risus ut elit. In in velit porttitor ex porta mattis eget nec enim. Nulla
+      ac condimentum ante. Suspendisse non ultrices lacus. Nam vestibulum justo
+      quam, id dignissim ex volutpat id. Ut congue maximus tortor finibus
+      malesuada. Fusce urna orci, malesuada vitae facilisis eget, facilisis id
+      elit. Nunc leo mi, auctor eu maximus eget, ultrices quis velit. Nam in ex
+      eu nulla ornare tristique nec eleifend nisl. Aliquam volutpat dictum odio,
+      quis finibus dolor fermentum id. Nam interdum velit ut diam facilisis
+      malesuada. Vestibulum nec ultrices mi, a rutrum ipsum. Vivamus sed
+      vestibulum est, et placerat odio. Nulla facilisi.
+    </p>
+    <p>
+      Donec tempus consectetur ligula sed auctor. Suspendisse quis rhoncus
+      justo, vel accumsan nisl. Nullam eu euismod ex. Lorem ipsum dolor sit
+      amet, consectetur adipiscing elit. Donec viverra congue ex, at luctus arcu
+      placerat vel. Etiam a lorem sit amet lorem luctus viverra. Aliquam elit
+      arcu, tempus et aliquet eget, imperdiet id sem. Donec suscipit velit et
+      magna pellentesque fringilla. Donec quis justo metus. Integer sit amet
+      metus massa.
+    </p>
+    <p>
+      Aliquam elementum lorem vitae vestibulum consectetur. Ut quis augue
+      mattis, euismod enim lobortis, hendrerit felis. Nulla facilisi. Vestibulum
+      non turpis eu erat convallis pellentesque. Fusce congue sit amet metus in
+      ornare. Etiam volutpat quis eros ac tristique. Donec pellentesque elit ut
+      nibh maximus, ac tristique purus mollis. Cras mattis nisl in laoreet
+      luctus. Mauris sit amet vestibulum lectus. Duis sed purus et nisi ornare
+      tempor. Vestibulum auctor rutrum consectetur. Cras volutpat lacus quis
+      turpis tempus, eget rutrum mi laoreet. Pellentesque bibendum eros id
+      sapien rhoncus viverra.
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean pulvinar,
+      metus nec vulputate placerat, tortor nulla finibus nunc, vitae varius eros
+      risus ut elit. In in velit porttitor ex porta mattis eget nec enim. Nulla
+      ac condimentum ante. Suspendisse non ultrices lacus. Nam vestibulum justo
+      quam, id dignissim ex volutpat id. Ut congue maximus tortor finibus
+      malesuada. Fusce urna orci, malesuada vitae facilisis eget, facilisis id
+      elit. Nunc leo mi, auctor eu maximus eget, ultrices quis velit. Nam in ex
+      eu nulla ornare tristique nec eleifend nisl. Aliquam volutpat dictum odio,
+      quis finibus dolor fermentum id. Nam interdum velit ut diam facilisis
+      malesuada. Vestibulum nec ultrices mi, a rutrum ipsum. Vivamus sed
+      vestibulum est, et placerat odio. Nulla facilisi.
+    </p>
+    <p>
+      Donec tempus consectetur ligula sed auctor. Suspendisse quis rhoncus
+      justo, vel accumsan nisl. Nullam eu euismod ex. Lorem ipsum dolor sit
+      amet, consectetur adipiscing elit. Donec viverra congue ex, at luctus arcu
+      placerat vel. Etiam a lorem sit amet lorem luctus viverra. Aliquam elit
+      arcu, tempus et aliquet eget, imperdiet id sem. Donec suscipit velit et
+      magna pellentesque fringilla. Donec quis justo metus. Integer sit amet
+      metus massa.
+    </p>
+    <p>
+      Aliquam elementum lorem vitae vestibulum consectetur. Ut quis augue
+      mattis, euismod enim lobortis, hendrerit felis. Nulla facilisi. Vestibulum
+      non turpis eu erat convallis pellentesque. Fusce congue sit amet metus in
+      ornare. Etiam volutpat quis eros ac tristique. Donec pellentesque elit ut
+      nibh maximus, ac tristique purus mollis. Cras mattis nisl in laoreet
+      luctus. Mauris sit amet vestibulum lectus. Duis sed purus et nisi ornare
+      tempor. Vestibulum auctor rutrum consectetur. Cras volutpat lacus quis
+      turpis tempus, eget rutrum mi laoreet. Pellentesque bibendum eros id
+      sapien rhoncus viverra.
+    </p>
+
+    <!-- Gallery 1 -->
+<div class="gallery" data-lightbox-id="lightbox1">
+  <img src="https://place-hold.it/100x100" alt="Image 1" />
+  <img src="https://place-hold.it/100x100" alt="Image 2" />
+  <!-- Add more images as needed -->
+</div>
+
+<!-- Gallery 2 -->
+<div class="gallery" data-lightbox-id="lightbox2">
+  <img src="https://place-hold.it/100x100" alt="Image 3" />
+  <img src="https://place-hold.it/100x100" alt="Image 4" />
+  <!-- Add more images as needed -->
+</div>
+
+<a href="#" class="lightbox-link" data-image-src="https://place-hold.it/100x100" data-lightbox-id="lightbox3">Open Standalone Image</a>
+<a href="#" class="lightbox-link" data-image-src="https://place-hold.it/100x100" data-lightbox-id="anotherlink">Linked Image</a>
+
+<!-- Lightbox (Single for all galleries) -->
+<div id="lightbox" class="lightbox">
+  <span class="lightbox-close">✖</span>
+  <img class="lightbox-img" src="" alt="Lightbox Image">
+  <div class="lightbox-nav prev hidden">❮</div>
+  <div class="lightbox-nav next hidden">❯</div>
+</div>
+  </body>
+</html>

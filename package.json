@@ -1,0 +1,25 @@
+{
+  "name": "mc-lightbox",
+  "version": "1.0.0",
+  "description": "A Vanilla JS Lightbox Gallery",
+  "main": "dist/lightbox.min.js",
+  "scripts": {
+    "build": "npm run minify",
+    "minify": "minify src/lightbox.js -o dist/lightbox.min.js && minify src/lightbox.css -o dist/lightbox.min.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/megancoyle/mc-lightbox.git"
+  },
+  "keywords": [
+    "lightbox",
+    "gallery",
+    "vanilla-js",
+    "npm-package"
+  ],
+  "author": "Megan Coyle",
+  "license": "MIT",
+  "devDependencies": {
+    "minify": "^7.0.2"
+  }
+}
