@@ -38,7 +38,9 @@ document.addEventListener('DOMContentLoaded', function() {
     function closeLightbox() {
         lightbox.classList.remove('visible');
         document.body.classList.remove('disable-scroll'); // Enable background scrolling
-        updateURL();
+        const url = window.location.protocol + "//" + window.location.host + window.location.pathname;
+        // Use history.pushState to update the URL
+        window.history.pushState({ path: url }, '', url);
     }
 
     function showNextImage() {
