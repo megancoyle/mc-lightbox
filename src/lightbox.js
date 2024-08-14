@@ -1,6 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = lightbox.querySelector('.lightbox-img');
+    const lightboxCaption = document.createElement('div'); // Create a div for the caption
+    lightboxCaption.classList.add('lightbox-caption');
+    lightbox.appendChild(lightboxCaption); // Append the caption to the lightbox
     const closeButton = lightbox.querySelector('.lightbox-close');
     const prevButton = lightbox.querySelector('.prev');
     const nextButton = lightbox.querySelector('.next');
@@ -16,11 +19,14 @@ document.addEventListener('DOMContentLoaded', function() {
             currentIndex = index;
             isStandalone = false;
             lightboxImg.src = currentGallery[currentIndex]?.src || '';
+            updateCaption(currentGallery[currentIndex]?.dataset.caption); // Update caption
         } else {
             currentGallery = [];
             currentIndex = -1;
             isStandalone = true;
             lightboxImg.src = lightbox.dataset.imageSrc;
+            const caption = lightbox.dataset.caption || ''; // Handle null or undefined captions
+            updateCaption(caption); // Update caption for standalone
         }
 
         lightbox.classList.add('visible');
@@ -39,6 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (currentIndex < currentGallery.length - 1) {
             currentIndex++;
             lightboxImg.src = currentGallery[currentIndex].src;
+            updateCaption(currentGallery[currentIndex]?.dataset.caption); // Update caption
             updateNavigationButtons();
             updateURL();
         }
@@ -48,8 +55,19 @@ document.addEventListener('DOMContentLoaded', function() {
         if (currentIndex > 0) {
             currentIndex--;
             lightboxImg.src = currentGallery[currentIndex].src;
+            updateCaption(currentGallery[currentIndex]?.dataset.caption); // Update caption
             updateNavigationButtons();
             updateURL();
+        }
+    }
+
+    function updateCaption(caption) {
+        if (caption) {
+            lightboxCaption.innerHTML = caption;
+            lightboxCaption.style.display = 'block';
+        } else {
+            lightboxCaption.innerHTML = '';
+            lightboxCaption.style.display = 'none';
         }
     }
 
@@ -129,6 +147,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const link = document.querySelector(`.lightbox-link[data-lightbox-id="${lightboxId}"]`);
                 if (link) {
                     lightbox.dataset.imageSrc = link.getAttribute('data-image-src');
+                    lightbox.dataset.caption = link.getAttribute('data-caption') || ''; // Ensure caption is not null
                     currentLightboxId = lightboxId;
                     openLightbox(null, -1);
                 } else {
@@ -157,6 +176,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const link = document.querySelector(`.lightbox-link[data-lightbox-id="${lightboxId}"]`);
                 if (link) {
                     lightbox.dataset.imageSrc = link.getAttribute('data-image-src');
+                    lightbox.dataset.caption = link.getAttribute('data-caption') || ''; // Ensure caption is not null
                     currentLightboxId = lightboxId;
                     openLightbox(null, -1);
                 } else {
@@ -182,6 +202,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             } else {
                 lightbox.dataset.imageSrc = this.getAttribute('data-image-src');
+                lightbox.dataset.caption = this.getAttribute('data-caption') || ''; // Ensure caption is not null
                 currentLightboxId = lightboxId;
                 openLightbox(null, -1);
             }
