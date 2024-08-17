@@ -78,29 +78,33 @@
 
     <!-- Gallery 1 -->
 <!-- Gallery 1 -->
-<div class="gallery" data-lightbox-id="lightbox1">
-  <img src="https://place-hold.it/100x100" alt="Image 1" data-caption="A caption <strong>here</strong>" />
-  <img src="https://place-hold.it/100x100" alt="Image 2" data-caption="Another <em>caption</em>" />
+<div class="mc-gallery" data-lightbox-id="lightbox1">
+  <img src="https://place-hold.it/100x100" alt="Image 1" data-image-src="https://place-hold.it/500x600" data-caption="<h1>Heading</h1><p>Here's some text<br><a href='http://google.com' target='_blank'><strong>Here's a link</strong></a></p><p>Here's a new paragraph</p>" />
+  <img src="https://place-hold.it/100x100" alt="Image 2" data-image-src="https://place-hold.it/500x600" data-caption="Another <em>caption</em>" />
   <!-- Add more images as needed -->
 </div>
 
 
 <!-- Gallery 2 -->
-<div class="gallery" data-lightbox-id="lightbox2">
-  <img src="https://place-hold.it/100x100" alt="Image 3" />
-  <img src="https://place-hold.it/100x100" alt="Image 4" />
+<div class="mc-gallery" data-lightbox-id="lightbox2">
+  <img src="https://place-hold.it/100x100" data-image-src="https://place-hold.it/500x600" alt="Image 3" />
+  <img src="https://place-hold.it/100x100" data-image-src="https://place-hold.it/500x600" alt="Image 4" />
   <!-- Add more images as needed -->
 </div>
 
-<a href="#" class="lightbox-link" data-image-src="https://place-hold.it/100x100" data-lightbox-id="lightbox3" data-caption="Standalone <strong>Image</strong> Caption">Open Standalone Image</a>
-<a href="#" class="lightbox-link" data-image-src="https://place-hold.it/100x100" data-lightbox-id="anotherlink">Linked Image</a>
+<a href="#" class="mc-lightbox-link" data-image-src="https://place-hold.it/500x600" data-lightbox-id="lightbox3" data-caption="Standalone <strong>Image</strong> Caption Aliquam elementum lorem vitae vestibulum consectetur. Ut quis augue mattis, euismod enim lobortis, hendrerit felis. Nulla facilisi. Vestibulum non turpis eu erat convallis pellentesque. Fusce congue sit amet metus in ornare. Etiam volutpat quis eros ac tristique. Donec pellentesque elit ut nibh maximus, ac tristique purus mollis. Cras mattis nisl in laoreet luctus. Mauris sit amet vestibulum lectus. Duis sed purus et nisi ornare">Open Standalone Image</a>
+<a href="#" class="mc-lightbox-link" data-image-src="https://place-hold.it/500x600" data-lightbox-id="anotherlink">Linked Image</a>
 
 <!-- Lightbox (Single for all galleries) -->
-<div id="lightbox" class="lightbox">
-  <span class="lightbox-close">✖</span>
-  <img class="lightbox-img" src="" alt="Lightbox Image">
-  <div class="lightbox-nav prev hidden">❮</div>
-  <div class="lightbox-nav next hidden">❯</div>
+<div id="mc-lightbox" class="mc-lightbox">
+  <div id="mc-lightbox-inner">
+    <div class="mc-controls">
+      <span class="mc-lightbox-close">✖</span>
+      <div class="mc-lightbox-nav prev">❮</div>
+      <div class="mc-lightbox-nav next">❯</div>
+    </div>
+    <img class="mc-lightbox-img" src="" alt="Lightbox Image">
+  </div>
 </div>
   </body>
 </html>

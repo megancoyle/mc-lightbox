@@ -1,101 +1,135 @@
 /* Basic styles for the gallery */
-.gallery {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  
-  .gallery img {
-    max-width: 100%;
-    cursor: pointer;
-    transition: transform 0.2s;
-  }
-  
-  .gallery img:hover {
-    transform: scale(1.05);
-  }
-  
-  /* Styles for the lightbox */
-  .lightbox {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s, visibility 0.3s;
-    z-index: 1000; /* Ensure the lightbox is on top */
-    overflow: auto; /* Allow scrolling within the lightbox */
-  }
-  
-  .lightbox img {
-    width: auto; /* Allow the image to maintain its natural width */
-    height: auto; /* Allow the image to maintain its natural height */
-    max-width: 90%; /* Shrink the image only if it is too wide for the viewport */
-    max-height: 90%; /* Ensure image fits within the viewport vertically */
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
-    margin: auto; /* Center the image even if it is smaller than the lightbox */
-  }
+.mc-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
 
-  .lightbox-caption {
-    color: white;
-    font-size: 16px;
-    margin-top: 10px;
-    text-align: center;
-    max-width: 90%;
-    word-wrap: break-word;
-  }
-  
-  /* Class to show the lightbox */
-  .lightbox.visible {
-    opacity: 1;
-    visibility: visible;
-  }
-  
-  /* Class to disable background scrolling */
-  .disable-scroll {
-    overflow: hidden;
-  }
-  
-  /* Close button in the lightbox */
-  .lightbox-close {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    color: white;
-    font-size: 30px;
-    cursor: pointer;
-    z-index: 1100; /* Ensure close button is on top of other elements */
-  }
-  
-  /* Styles for the navigation arrows */
-  .lightbox .prev,
-  .lightbox .next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    color: white;
-    font-size: 50px;
-    cursor: pointer;
-    user-select: none;
-    z-index: 1100; /* Ensure navigation arrows are on top of other elements */
-  }
-  
-  .lightbox .prev {
-    left: 10px;
-  }
-  
-  .lightbox .next {
-    right: 10px;
-  }
-  
-  /* Utils */
-  .hidden {
-    display: none;
-  }
-  
+.mc-gallery img {
+  max-width: 100%;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.mc-gallery img:hover {
+  transform: scale(1.05);
+}
+
+/* Styles for the lightbox */
+.mc-lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(248, 246, 246, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+  z-index: 1000;
+  overflow: auto;
+  align-items: flex-start;
+  padding-top: 30px;
+}
+
+.mc-lightbox img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  margin: auto;
+}
+
+#mc-lightbox-inner {
+  width: 100%;
+  max-width: 500px;
+  background: white;
+  padding: 10px 20px 40px 20px;
+  border: 2px solid #bbbbbb;
+  box-shadow: 0 2px 5px rgba(15, 15, 15, 0.25);
+  margin-bottom: 80px;
+}
+
+.mc-controls {
+  padding-bottom: 10px;
+}
+
+.mc-controls::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.mc-lightbox-caption {
+  font-family: "Libre Franklin", "Helvetica Neue", helvetica, arial, sans-serif;
+  color: #323232;
+  font-size: 15px;
+  margin-top: 10px;
+  text-align: left;
+  word-wrap: break-word;
+}
+
+.mc-lightbox-caption h1 {
+  font-size: 18px;
+  font-weight: 700;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.mc-lightbox-caption a {
+  color: #323232;
+}
+
+/* Class to show the lightbox */
+.mc-lightbox.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Class to disable background scrolling */
+.disable-scroll {
+  overflow: hidden;
+}
+
+/* Close button in the lightbox */
+.mc-lightbox-close {
+  color: #7a7a7a;
+  float:right;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* Styles for the navigation arrows */
+.mc-lightbox .prev,
+.mc-lightbox .next {
+  font-size: 20px;
+  color: #7a7a7a;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.mc-lightbox .prev:hover,
+.mc-lightbox .next:hover,
+.mc-lightbox-close:hover {
+  opacity: .8;
+}
+
+.mc-lightbox .prev {
+  margin-right: 10px;
+}
+
+.mc-lightbox .next {
+  margin-left: 10px;
+}
+
+.mc-lightbox .disabled {
+  cursor: default;
+  opacity: .3 !important;
+}
+
+/* Utils */
+.hidden {
+  display: none !important;
+}
