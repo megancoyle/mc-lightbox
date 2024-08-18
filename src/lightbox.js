@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     lightboxCaption.classList.add('mc-lightbox-caption');
     lightboxInner.appendChild(lightboxCaption);
 
+    // Create and append loader
     const lightboxLoader = document.createElement('div');
     lightboxLoader.classList.add('mc-lightbox-loader');
     lightbox.appendChild(lightboxLoader);
@@ -20,36 +21,11 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentLightboxId = '';
     let isStandalone = false;
 
-    function getFocusableElements() {
-        return Array.from(lightbox.querySelectorAll('a[href], button, input, select, textarea, [tabindex]:not([tabindex="-1"])'));
-    }
-
-    function trapFocus(event) {
-        if (lightbox.classList.contains('visible')) {
-            const focusable = getFocusableElements();
-            const firstElement = focusable[0];
-            const lastElement = focusable[focusable.length - 1];
-
-            if (event.key === 'Tab') {
-                if (event.shiftKey) { // Shift + Tab
-                    if (document.activeElement === firstElement) {
-                        event.preventDefault();
-                        lastElement.focus();
-                    }
-                } else { // Tab
-                    if (document.activeElement === lastElement) {
-                        event.preventDefault();
-                        firstElement.focus();
-                    }
-                }
-            }
-        }
-    }
-
     function openLightbox(gallery, index) {
+        // Show loader and hide inner content initially
         lightboxLoader.style.display = 'block';
         lightboxInner.style.display = 'none';
-
+        
         if (gallery) {
             currentGallery = gallery.querySelectorAll('img');
             currentLightboxId = gallery.getAttribute('data-lightbox-id');
@@ -67,22 +43,16 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         lightboxImg.onload = function() {
+            // Hide loader and show inner content when image is loaded
             lightboxLoader.style.display = 'none';
             lightboxInner.style.display = 'block';
-            updateCaption(lightboxCaption.innerHTML);
+            updateCaption(lightboxCaption.innerHTML); // Ensure the caption is shown
         };
 
         lightbox.classList.add('visible');
         document.body.classList.add('disable-scroll');
         updateNavigationButtons();
         updateURL();
-
-        // Focus on the first control (close button)
-        if (closeButton) {
-            closeButton.focus();
-        }
-
-        document.addEventListener('keydown', trapFocus);
     }
 
     function closeLightbox() {
@@ -90,8 +60,6 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.classList.remove('disable-scroll');
         const url = window.location.protocol + "//" + window.location.host + window.location.pathname;
         window.history.pushState({ path: url }, '', url);
-
-        document.removeEventListener('keydown', trapFocus);
     }
 
     function showNextImage() {
@@ -132,18 +100,6 @@ document.addEventListener('DOMContentLoaded', function() {
             prevButton.classList.toggle('disabled', prevDisabled);
             nextButton.classList.toggle('disabled', nextDisabled);
 
-            if (prevDisabled) {
-                prevButton.setAttribute('tabindex', '-1');
-            } else {
-                prevButton.setAttribute('tabindex', '0');
-            }
-
-            if (nextDisabled) {
-                nextButton.setAttribute('tabindex', '-1');
-            } else {
-                nextButton.setAttribute('tabindex', '0');
-            }
-
             if (prevDisabled && nextDisabled) {
                 prevButton.classList.add('hidden');
                 nextButton.classList.add('hidden');
@@ -166,49 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
         history.pushState(null, '', url.toString());
     }
 
-    function handleKeyDown(event) {
-        if (lightbox.classList.contains('visible')) {
-            switch (event.key) {
-                case 'ArrowRight':
-                    showNextImage();
-                    break;
-                case 'ArrowLeft':
-                    showPrevImage();
-                    break;
-                case 'Escape':
-                    closeLightbox();
-                    break;
-                case 'Enter':
-                    if (event.target.classList.contains('prev')) {
-                        showPrevImage();
-                    } else if (event.target.classList.contains('next')) {
-                        showNextImage();
-                    } else if (event.target.classList.contains('mc-lightbox-close')) {
-                        closeLightbox();
-                    }
-                    break;
-            }
-        }
-    }
-
-    function handleFocus(event) {
-        if (lightbox.classList.contains('visible')) {
-            const focusable = getFocusableElements();
-            const firstElement = focusable[0];
-            const lastElement = focusable[focusable.length - 1];
-
-            if (event.target === firstElement || event.target === lastElement) {
-                event.target.addEventListener('keydown', handleKeyDown);
-            }
-        }
-    }
-
-    function handleBlur(event) {
-        if (event.target.classList.contains('mc-lightbox-nav')) {
-            event.target.removeEventListener('keydown', handleKeyDown);
-        }
-    }
-
+    // Event listeners for gallery images
     document.querySelectorAll('.mc-gallery img').forEach((img, index) => {
         img.addEventListener('click', () => {
             const gallery = img.closest('.mc-gallery');
@@ -216,8 +130,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // Event listeners for lightbox actions
     if (closeButton) {
         closeButton.addEventListener('click', closeLightbox);
+        closeButton.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                closeLightbox();
+            }
+        });
+        closeButton.setAttribute('tabindex', '0'); // Make focusable
     }
 
     lightbox.addEventListener('click', function(event) {
@@ -237,6 +158,12 @@ document.addEventListener('DOMContentLoaded', function() {
             showPrevImage();
             event.stopPropagation();
         });
+        prevButton.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                showPrevImage();
+            }
+        });
+        prevButton.setAttribute('tabindex', '0'); // Make focusable
     }
 
     if (nextButton) {
@@ -244,12 +171,31 @@ document.addEventListener('DOMContentLoaded', function() {
             showNextImage();
             event.stopPropagation();
         });
+        nextButton.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                showNextImage();
+            }
+        });
+        nextButton.setAttribute('tabindex', '0'); // Make focusable
     }
 
-    document.addEventListener('keydown', handleKeyDown);
-    document.addEventListener('focusin', handleFocus);
-    document.addEventListener('focusout', handleBlur);
+    document.addEventListener('keydown', function(event) {
+        if (lightbox.classList.contains('visible')) {
+            switch (event.key) {
+                case 'ArrowRight':
+                    showNextImage();
+                    break;
+                case 'ArrowLeft':
+                    showPrevImage();
+                    break;
+                case 'Escape':
+                    closeLightbox();
+                    break;
+            }
+        }
+    });
 
+    // Handle URL state on page load
     window.addEventListener('load', () => {
         const params = new URLSearchParams(window.location.search);
         const lightboxId = params.get('lightbox');
@@ -278,6 +224,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // Handle browser navigation
     window.addEventListener('popstate', () => {
         const params = new URLSearchParams(window.location.search);
         const lightboxId = params.get('lightbox');
@@ -308,16 +255,22 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // Event listeners for lightbox links
     document.querySelectorAll('.mc-lightbox-link').forEach(link => {
         link.addEventListener('click', function(event) {
             event.preventDefault();
             const lightboxId = this.getAttribute('data-lightbox-id');
             const gallery = document.querySelector(`.mc-gallery[data-lightbox-id="${lightboxId}"]`);
+
             if (gallery) {
-                openLightbox(gallery, 0);
+                const imageIndex = parseInt(this.getAttribute('data-image-index'), 10);
+                if (!isNaN(imageIndex)) {
+                    openLightbox(gallery, imageIndex);
+                }
             } else {
                 lightbox.dataset.imageSrc = this.getAttribute('data-image-src');
                 lightbox.dataset.caption = this.getAttribute('data-caption') || '';
+                currentLightboxId = lightboxId;
                 openLightbox(null, -1);
             }
         });
