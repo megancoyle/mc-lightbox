@@ -122,11 +122,20 @@ document.addEventListener('DOMContentLoaded', function() {
         history.pushState(null, '', url.toString());
     }
 
-    // Event listeners for gallery images
-    document.querySelectorAll('.mc-gallery img').forEach((img, index) => {
-        img.addEventListener('click', () => {
-            const gallery = img.closest('.mc-gallery');
+    // Event listeners for gallery thumbnails
+    document.querySelectorAll('.mc-gallery .mc-gallery-thumbnail').forEach((thumbnail, index) => {
+        const img = thumbnail.querySelector('img');
+
+        thumbnail.addEventListener('click', () => {
+            const gallery = thumbnail.closest('.mc-gallery');
             openLightbox(gallery, Array.from(gallery.querySelectorAll('img')).indexOf(img));
+        });
+
+        thumbnail.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                const gallery = thumbnail.closest('.mc-gallery');
+                openLightbox(gallery, Array.from(gallery.querySelectorAll('img')).indexOf(img));
+            }
         });
     });
 
@@ -260,19 +269,10 @@ document.addEventListener('DOMContentLoaded', function() {
         link.addEventListener('click', function(event) {
             event.preventDefault();
             const lightboxId = this.getAttribute('data-lightbox-id');
-            const gallery = document.querySelector(`.mc-gallery[data-lightbox-id="${lightboxId}"]`);
-
-            if (gallery) {
-                const imageIndex = parseInt(this.getAttribute('data-image-index'), 10);
-                if (!isNaN(imageIndex)) {
-                    openLightbox(gallery, imageIndex);
-                }
-            } else {
-                lightbox.dataset.imageSrc = this.getAttribute('data-image-src');
-                lightbox.dataset.caption = this.getAttribute('data-caption') || '';
-                currentLightboxId = lightboxId;
-                openLightbox(null, -1);
-            }
+            lightbox.dataset.imageSrc = this.getAttribute('data-image-src');
+            lightbox.dataset.caption = this.getAttribute('data-caption') || '';
+            currentLightboxId = lightboxId;
+            openLightbox(null, -1);
         });
     });
 });
