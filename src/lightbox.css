@@ -36,15 +36,14 @@
 }
 
 .mc-lightbox img {
-  width: auto;
+  width: 100%;
   height: auto;
-  max-width: 100%;
   margin: auto;
 }
 
 #mc-lightbox-inner {
   width: 100%;
-  max-width: 500px;
+  max-width: 550px;
   background: white;
   padding: 10px 20px 40px 20px;
   border: 2px solid #bbbbbb;
