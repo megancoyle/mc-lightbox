@@ -8,6 +8,11 @@ document.addEventListener('DOMContentLoaded', function() {
     lightboxCaption.classList.add('mc-lightbox-caption');
     lightboxInner.appendChild(lightboxCaption);
 
+    // Create and append loader
+    const lightboxLoader = document.createElement('div');
+    lightboxLoader.classList.add('mc-lightbox-loader');
+    lightbox.appendChild(lightboxLoader);
+
     const closeButton = lightbox.querySelector('.mc-lightbox-close');
     const prevButton = lightbox.querySelector('.prev');
     const nextButton = lightbox.querySelector('.next');
@@ -17,6 +22,10 @@ document.addEventListener('DOMContentLoaded', function() {
     let isStandalone = false;
 
     function openLightbox(gallery, index) {
+        // Show loader and hide inner content initially
+        lightboxLoader.style.display = 'block';
+        lightboxInner.style.display = 'none';
+        
         if (gallery) {
             currentGallery = gallery.querySelectorAll('img');
             currentLightboxId = gallery.getAttribute('data-lightbox-id');
@@ -29,19 +38,26 @@ document.addEventListener('DOMContentLoaded', function() {
             currentIndex = -1;
             isStandalone = true;
             lightboxImg.src = lightbox.dataset.imageSrc;
-            const caption = lightbox.dataset.caption || ''; // Handle null or undefined captions
-            updateCaption(caption); // Update caption for standalone
+            const caption = lightbox.dataset.caption || ''; 
+            updateCaption(caption); 
         }
 
+        lightboxImg.onload = function() {
+            // Hide loader and show inner content when image is loaded
+            lightboxLoader.style.display = 'none';
+            lightboxInner.style.display = 'block';
+            updateCaption(lightboxCaption.innerHTML); // Ensure the caption is shown
+        };
+
         lightbox.classList.add('visible');
-        document.body.classList.add('disable-scroll'); // Disable background scrolling
+        document.body.classList.add('disable-scroll');
         updateNavigationButtons();
         updateURL();
     }
 
     function closeLightbox() {
         lightbox.classList.remove('visible');
-        document.body.classList.remove('disable-scroll'); // Enable background scrolling
+        document.body.classList.remove('disable-scroll');
         const url = window.location.protocol + "//" + window.location.host + window.location.pathname;
         window.history.pushState({ path: url }, '', url);
     }
@@ -119,6 +135,12 @@ document.addEventListener('DOMContentLoaded', function() {
         closeButton.addEventListener('click', closeLightbox);
     }
 
+    lightbox.addEventListener('click', function(event) {
+        if (event.target === lightbox) {
+            closeLightbox();
+        }
+    });
+
     if (lightboxImg) {
         lightboxImg.addEventListener('click', function(event) {
             event.stopPropagation();
@@ -128,14 +150,14 @@ document.addEventListener('DOMContentLoaded', function() {
     if (prevButton) {
         prevButton.addEventListener('click', function(event) {
             showPrevImage();
-            event.stopPropagation(); // Prevent closing the lightbox when clicking the arrow
+            event.stopPropagation();
         });
     }
 
     if (nextButton) {
         nextButton.addEventListener('click', function(event) {
             showNextImage();
-            event.stopPropagation(); // Prevent closing the lightbox when clicking the arrow
+            event.stopPropagation();
         });
     }
 
@@ -168,13 +190,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (!isNaN(index)) {
                     openLightbox(gallery, index);
                 } else {
-                    openLightbox(gallery, 0); // Default to the first image if index is invalid
+                    openLightbox(gallery, 0);
                 }
             } else {
                 const link = document.querySelector(`.mc-lightbox-link[data-lightbox-id="${lightboxId}"]`);
                 if (link) {
                     lightbox.dataset.imageSrc = link.getAttribute('data-image-src');
-                    lightbox.dataset.caption = link.getAttribute('data-caption') || ''; // Ensure caption is not null
+                    lightbox.dataset.caption = link.getAttribute('data-caption') || '';
                     currentLightboxId = lightboxId;
                     openLightbox(null, -1);
                 } else {
@@ -197,13 +219,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (!isNaN(index)) {
                     openLightbox(gallery, index);
                 } else {
-                    openLightbox(gallery, 0); // Default to the first image if index is invalid
+                    openLightbox(gallery, 0);
                 }
             } else {
                 const link = document.querySelector(`.mc-lightbox-link[data-lightbox-id="${lightboxId}"]`);
                 if (link) {
                     lightbox.dataset.imageSrc = link.getAttribute('data-image-src');
-                    lightbox.dataset.caption = link.getAttribute('data-caption') || ''; // Ensure caption is not null
+                    lightbox.dataset.caption = link.getAttribute('data-caption') || '';
                     currentLightboxId = lightboxId;
                     openLightbox(null, -1);
                 } else {
@@ -229,7 +251,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             } else {
                 lightbox.dataset.imageSrc = this.getAttribute('data-image-src');
-                lightbox.dataset.caption = this.getAttribute('data-caption') || ''; // Ensure caption is not null
+                lightbox.dataset.caption = this.getAttribute('data-caption') || '';
                 currentLightboxId = lightboxId;
                 openLightbox(null, -1);
             }

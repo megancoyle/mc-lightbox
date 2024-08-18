@@ -132,3 +132,24 @@
 .hidden {
   display: none !important;
 }
+
+/* Loader Styles */
+.mc-lightbox-loader {
+  border: 5px solid #f3f3f3; /* Light grey */
+  border-top: 5px solid #555; /* Dark grey */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1001;
+}
+
+/* Animation for Loader */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
