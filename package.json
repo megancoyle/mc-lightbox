@@ -4,8 +4,8 @@
   "description": "A Vanilla JS Lightbox Gallery",
   "main": "dist/lightbox.min.js",
   "scripts": {
-    "build": "npm run minify",
-    "minify": "minify src/lightbox.js -o dist/lightbox.min.js && minify src/lightbox.css -o dist/lightbox.min.css"
+    "build": "mkdir -p dist && npm run minify",
+    "minify": "terser src/lightbox.js -o dist/lightbox.min.js && cleancss -o dist/lightbox.min.css src/lightbox.css"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,7 @@
   "author": "Megan Coyle",
   "license": "MIT",
   "devDependencies": {
-    "minify": "^7.0.2"
+    "clean-css-cli": "^5.6.3",
+    "terser": "^5.31.6"
   }
 }

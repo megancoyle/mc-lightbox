@@ -30,12 +30,14 @@
 }
 
 .mc-gallery-overlay-caption {
+  font-size: 16px;
   max-width: 90%;
   padding: 10px;
   text-align: center;
   box-sizing: border-box;
   overflow-wrap: break-word;
   word-wrap: break-word;
+  line-height: .9;
 }
 
 /* Styles for the lightbox */
