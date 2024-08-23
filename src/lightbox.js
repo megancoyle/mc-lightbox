@@ -50,14 +50,14 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         lightbox.classList.add('visible');
-        document.body.classList.add('disable-scroll');
+        document.body.classList.add('mc-disable-scroll');
         updateNavigationButtons();
         updateURL();
     }
 
     function closeLightbox() {
         lightbox.classList.remove('visible');
-        document.body.classList.remove('disable-scroll');
+        document.body.classList.remove('mc-disable-scroll');
         const url = window.location.protocol + "//" + window.location.host + window.location.pathname;
         window.history.pushState({ path: url }, '', url);
     }
@@ -101,11 +101,11 @@ document.addEventListener('DOMContentLoaded', function() {
             nextButton.classList.toggle('disabled', nextDisabled);
 
             if (prevDisabled && nextDisabled) {
-                prevButton.classList.add('hidden');
-                nextButton.classList.add('hidden');
+                prevButton.classList.add('mc-hidden');
+                nextButton.classList.add('mc-hidden');
             } else {
-                prevButton.classList.remove('hidden');
-                nextButton.classList.remove('hidden');
+                prevButton.classList.remove('mc-hidden');
+                nextButton.classList.remove('mc-hidden');
             }
         }
     }

@@ -115,7 +115,7 @@
 }
 
 /* Class to disable background scrolling */
-.disable-scroll {
+.mc-disable-scroll {
   overflow: hidden;
 }
 
@@ -156,7 +156,7 @@
 }
 
 /* Utils */
-.hidden {
+.mc-hidden {
   display: none !important;
 }
 
