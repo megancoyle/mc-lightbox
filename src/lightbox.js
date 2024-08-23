@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
             currentLightboxId = gallery.getAttribute('data-mc-lightbox-id');
             currentIndex = index;
             isStandalone = false;
-            lightboxImg.src = currentGallery[currentIndex]?.getAttribute('data-image-src') || '';
+            lightboxImg.src = currentGallery[currentIndex]?.getAttribute('data-mc-image-src') || '';
             updateCaption(currentGallery[currentIndex]?.dataset.caption);
         } else {
             currentGallery = [];
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function showNextImage() {
         if (currentIndex < currentGallery.length - 1) {
             currentIndex++;
-            lightboxImg.src = currentGallery[currentIndex].getAttribute('data-image-src');
+            lightboxImg.src = currentGallery[currentIndex].getAttribute('data-mc-image-src');
             updateCaption(currentGallery[currentIndex]?.dataset.caption);
             updateNavigationButtons();
             updateURL();
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function showPrevImage() {
         if (currentIndex > 0) {
             currentIndex--;
-            lightboxImg.src = currentGallery[currentIndex].getAttribute('data-image-src');
+            lightboxImg.src = currentGallery[currentIndex].getAttribute('data-mc-image-src');
             updateCaption(currentGallery[currentIndex]?.dataset.caption);
             updateNavigationButtons();
             updateURL();
@@ -222,7 +222,7 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 const link = document.querySelector(`.mc-lightbox-link[data-mc-lightbox-id="${lightboxId}"]`);
                 if (link) {
-                    lightbox.dataset.imageSrc = link.getAttribute('data-image-src');
+                    lightbox.dataset.imageSrc = link.getAttribute('data-mc-image-src');
                     lightbox.dataset.caption = link.getAttribute('data-caption') || '';
                     currentLightboxId = lightboxId;
                     openLightbox(null, -1);
@@ -251,7 +251,7 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 const link = document.querySelector(`.mc-lightbox-link[data-mc-lightbox-id="${lightboxId}"]`);
                 if (link) {
-                    lightbox.dataset.imageSrc = link.getAttribute('data-image-src');
+                    lightbox.dataset.imageSrc = link.getAttribute('data-mc-image-src');
                     lightbox.dataset.caption = link.getAttribute('data-caption') || '';
                     currentLightboxId = lightboxId;
                     openLightbox(null, -1);
@@ -269,7 +269,7 @@ document.addEventListener('DOMContentLoaded', function() {
         link.addEventListener('click', function(event) {
             event.preventDefault();
             const lightboxId = this.getAttribute('data-mc-lightbox-id');
-            lightbox.dataset.imageSrc = this.getAttribute('data-image-src');
+            lightbox.dataset.imageSrc = this.getAttribute('data-mc-image-src');
             lightbox.dataset.caption = this.getAttribute('data-caption') || '';
             currentLightboxId = lightboxId;
             openLightbox(null, -1);
