@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (gallery) {
             currentGallery = gallery.querySelectorAll('img');
-            currentLightboxId = gallery.getAttribute('data-lightbox-id');
+            currentLightboxId = gallery.getAttribute('data-mc-lightbox-id');
             currentIndex = index;
             isStandalone = false;
             lightboxImg.src = currentGallery[currentIndex]?.getAttribute('data-image-src') || '';
@@ -210,7 +210,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const lightboxId = params.get('lightbox');
 
         if (lightboxId) {
-            const gallery = document.querySelector(`.mc-gallery[data-lightbox-id="${lightboxId}"]`);
+            const gallery = document.querySelector(`.mc-gallery[data-mc-lightbox-id="${lightboxId}"]`);
             if (gallery) {
                 const imageIndex = params.get('image');
                 const index = parseInt(imageIndex, 10);
@@ -220,7 +220,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     openLightbox(gallery, 0);
                 }
             } else {
-                const link = document.querySelector(`.mc-lightbox-link[data-lightbox-id="${lightboxId}"]`);
+                const link = document.querySelector(`.mc-lightbox-link[data-mc-lightbox-id="${lightboxId}"]`);
                 if (link) {
                     lightbox.dataset.imageSrc = link.getAttribute('data-image-src');
                     lightbox.dataset.caption = link.getAttribute('data-caption') || '';
@@ -240,7 +240,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const imageIndex = params.get('image');
 
         if (lightboxId) {
-            const gallery = document.querySelector(`.mc-gallery[data-lightbox-id="${lightboxId}"]`);
+            const gallery = document.querySelector(`.mc-gallery[data-mc-lightbox-id="${lightboxId}"]`);
             if (gallery) {
                 const index = parseInt(imageIndex, 10);
                 if (!isNaN(index)) {
@@ -249,7 +249,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     openLightbox(gallery, 0);
                 }
             } else {
-                const link = document.querySelector(`.mc-lightbox-link[data-lightbox-id="${lightboxId}"]`);
+                const link = document.querySelector(`.mc-lightbox-link[data-mc-lightbox-id="${lightboxId}"]`);
                 if (link) {
                     lightbox.dataset.imageSrc = link.getAttribute('data-image-src');
                     lightbox.dataset.caption = link.getAttribute('data-caption') || '';
@@ -268,7 +268,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.mc-lightbox-link').forEach(link => {
         link.addEventListener('click', function(event) {
             event.preventDefault();
-            const lightboxId = this.getAttribute('data-lightbox-id');
+            const lightboxId = this.getAttribute('data-mc-lightbox-id');
             lightbox.dataset.imageSrc = this.getAttribute('data-image-src');
             lightbox.dataset.caption = this.getAttribute('data-caption') || '';
             currentLightboxId = lightboxId;
