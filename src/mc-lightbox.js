@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             } catch (e) {
                 // If JSON parsing fails, fall back to original caption
-                console.error('Failed to parse JSON caption:', e);
+                parsedCaption = caption; // Ensure fallback to original caption
             }
     
             // Set innerHTML and display style
