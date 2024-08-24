@@ -32,13 +32,13 @@ document.addEventListener('DOMContentLoaded', function() {
             currentIndex = index;
             isStandalone = false;
             lightboxImg.src = currentGallery[currentIndex]?.getAttribute('data-mc-image-src') || '';
-            updateCaption(currentGallery[currentIndex]?.dataset.caption);
+            updateCaption(currentGallery[currentIndex]?.dataset.mcCaption);
         } else {
             currentGallery = [];
             currentIndex = -1;
             isStandalone = true;
             lightboxImg.src = lightbox.dataset.imageSrc;
-            const caption = lightbox.dataset.caption || ''; 
+            const caption = lightbox.dataset.mcCaption || ''; 
             updateCaption(caption); 
         }
 
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (currentIndex < currentGallery.length - 1) {
             currentIndex++;
             lightboxImg.src = currentGallery[currentIndex].getAttribute('data-mc-image-src');
-            updateCaption(currentGallery[currentIndex]?.dataset.caption);
+            updateCaption(currentGallery[currentIndex]?.dataset.mcCaption);
             updateNavigationButtons();
             updateURL();
         }
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (currentIndex > 0) {
             currentIndex--;
             lightboxImg.src = currentGallery[currentIndex].getAttribute('data-mc-image-src');
-            updateCaption(currentGallery[currentIndex]?.dataset.caption);
+            updateCaption(currentGallery[currentIndex]?.dataset.mcCaption);
             updateNavigationButtons();
             updateURL();
         }
@@ -223,7 +223,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const link = document.querySelector(`.mc-lightbox-link[data-mc-lightbox-id="${lightboxId}"]`);
                 if (link) {
                     lightbox.dataset.imageSrc = link.getAttribute('data-mc-image-src');
-                    lightbox.dataset.caption = link.getAttribute('data-mc-caption') || '';
+                    lightbox.dataset.mcCaption = link.getAttribute('data-mc-caption') || '';
                     currentLightboxId = lightboxId;
                     openLightbox(null, -1);
                 } else {
@@ -252,7 +252,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const link = document.querySelector(`.mc-lightbox-link[data-mc-lightbox-id="${lightboxId}"]`);
                 if (link) {
                     lightbox.dataset.imageSrc = link.getAttribute('data-mc-image-src');
-                    lightbox.dataset.caption = link.getAttribute('data-mc-caption') || '';
+                    lightbox.dataset.mcCaption = link.getAttribute('data-mc-caption') || '';
                     currentLightboxId = lightboxId;
                     openLightbox(null, -1);
                 } else {
@@ -270,7 +270,7 @@ document.addEventListener('DOMContentLoaded', function() {
             event.preventDefault();
             const lightboxId = this.getAttribute('data-mc-lightbox-id');
             lightbox.dataset.imageSrc = this.getAttribute('data-mc-image-src');
-            lightbox.dataset.caption = this.getAttribute('data-mc-caption') || '';
+            lightbox.dataset.mcCaption = this.getAttribute('data-mc-caption') || '';
             currentLightboxId = lightboxId;
             openLightbox(null, -1);
         });

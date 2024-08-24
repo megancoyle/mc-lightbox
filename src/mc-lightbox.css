@@ -57,11 +57,11 @@
   z-index: 1000;
   overflow: auto;
   align-items: flex-start;
-  padding-top: 30px;
+  padding-top: 60px;
 }
 
 .mc-lightbox img {
-  width: 100%;
+  max-width: 100%;
   height: auto;
   margin: auto;
   pointer-events: none;
