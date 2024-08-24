@@ -145,18 +145,21 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         thumbnail.addEventListener('keydown', (event) => {
-            if (event.key === 'Enter') {
+            if (event.key === 'Enter' || event.key === ' ') { // Handle both Enter and Space key for activation
                 const gallery = thumbnail.closest('.mc-gallery');
                 openLightbox(gallery, Array.from(gallery.querySelectorAll('img')).indexOf(img));
             }
         });
+
+        // Ensure thumbnails are focusable
+        thumbnail.setAttribute('tabindex', '0');
     });
 
     // Event listeners for lightbox actions
     if (closeButton) {
         closeButton.addEventListener('click', closeLightbox);
         closeButton.addEventListener('keydown', function(event) {
-            if (event.key === 'Enter') {
+            if (event.key === 'Enter' || event.key === ' ') {
                 closeLightbox();
             }
         });
@@ -181,7 +184,7 @@ document.addEventListener('DOMContentLoaded', function() {
             event.stopPropagation();
         });
         prevButton.addEventListener('keydown', function(event) {
-            if (event.key === 'Enter') {
+            if (event.key === 'Enter' || event.key === ' ') {
                 showPrevImage();
             }
         });
@@ -194,7 +197,7 @@ document.addEventListener('DOMContentLoaded', function() {
             event.stopPropagation();
         });
         nextButton.addEventListener('keydown', function(event) {
-            if (event.key === 'Enter') {
+            if (event.key === 'Enter' || event.key === ' ') {
                 showNextImage();
             }
         });
@@ -287,5 +290,19 @@ document.addEventListener('DOMContentLoaded', function() {
             currentLightboxId = lightboxId;
             openLightbox(null, -1);
         });
+
+        link.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter' || event.key === ' ') { // Handle both Enter and Space key for activation
+                event.preventDefault();
+                const lightboxId = this.getAttribute('data-mc-lightbox-id');
+                lightbox.dataset.imageSrc = this.getAttribute('data-mc-image-src');
+                lightbox.dataset.mcCaption = this.getAttribute('data-mc-caption') || '';
+                currentLightboxId = lightboxId;
+                openLightbox(null, -1);
+            }
+        });
+
+        // Ensure lightbox links are focusable
+        link.setAttribute('tabindex', '0');
     });
 });
