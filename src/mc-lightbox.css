@@ -104,6 +104,11 @@
   border-bottom: 1px solid #ccc;
 }
 
+.mc-lightbox-caption h2 {
+  font-size: 18px;
+  font-weight: 700;
+}
+
 .mc-lightbox-caption a {
   color: #323232;
 }
