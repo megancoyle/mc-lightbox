@@ -84,27 +84,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function updateCaption(caption) {
         if (caption) {
-            let parsedCaption = caption;
+            // Regular expression to detect escaped HTML sequences
+            const escapedHtmlPattern = /&lt;|&gt;|&amp;|&quot;|&#39;/;
     
-            // Attempt to parse JSON if it looks like JSON
-            try {
-                // Check if caption is valid JSON
-                if (typeof caption === 'string' && (caption.startsWith('{') || caption.startsWith('['))) {
-                    parsedCaption = JSON.parse(caption);
-                }
-            } catch (e) {
-                // If JSON parsing fails, fall back to original caption
-                parsedCaption = caption; // Ensure fallback to original caption
+            if (escapedHtmlPattern.test(caption)) {
+                // Create a temporary div element to decode the escaped HTML
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = caption;
+                lightboxCaption.innerHTML = tempDiv.textContent || tempDiv.innerText;
+            } else {
+                // If no escaped HTML is found, use the caption as is
+                lightboxCaption.innerHTML = caption;
             }
     
-            // Set innerHTML and display style
-            lightboxCaption.innerHTML = parsedCaption || '';
-            lightboxCaption.style.display = parsedCaption ? 'block' : 'none';
+            lightboxCaption.style.display = 'block';
         } else {
             lightboxCaption.innerHTML = '';
             lightboxCaption.style.display = 'none';
         }
     }
+    
 
     function updateNavigationButtons() {
         const prevDisabled = isStandalone || currentIndex <= 0 || currentGallery.length === 0;
