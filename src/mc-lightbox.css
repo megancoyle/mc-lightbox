@@ -1,4 +1,9 @@
 /* Basic styles for the gallery */
+.mc-gallery {
+  display: block;
+  clear: both;
+}
+
 .mc-gallery .mc-gallery-thumbnail {
   position: relative;
   display: inline-block;
@@ -15,7 +20,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(253, 253, 253, 0.7);
+  background-color: rgba(253, 253, 253, 0.8);
   color: #323232;
   display: flex;
   align-items: center;
