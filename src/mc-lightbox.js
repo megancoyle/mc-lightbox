@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Show loader and hide inner content initially
         lightboxLoader.style.display = 'block';
         lightboxInner.style.display = 'none';
-
+        
         if (gallery) {
             currentGallery = gallery.querySelectorAll('img');
             currentLightboxId = gallery.getAttribute('data-mc-lightbox-id');
@@ -38,8 +38,8 @@ document.addEventListener('DOMContentLoaded', function() {
             currentIndex = -1;
             isStandalone = true;
             lightboxImg.src = lightbox.dataset.imageSrc;
-            const caption = lightbox.dataset.mcCaption || '';
-            updateCaption(caption);
+            const caption = lightbox.dataset.mcCaption || ''; 
+            updateCaption(caption); 
         }
 
         lightboxImg.onload = function() {
@@ -84,8 +84,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function updateCaption(caption) {
         if (caption) {
-            lightboxCaption.innerHTML = caption;
-            lightboxCaption.style.display = 'block';
+            let parsedCaption = caption;
+    
+            // Attempt to parse JSON if it looks like JSON
+            try {
+                // Check if caption is valid JSON
+                if (typeof caption === 'string' && (caption.startsWith('{') || caption.startsWith('['))) {
+                    parsedCaption = JSON.parse(caption);
+                }
+            } catch (e) {
+                // If JSON parsing fails, fall back to original caption
+                console.error('Failed to parse JSON caption:', e);
+            }
+    
+            // Set innerHTML and display style
+            lightboxCaption.innerHTML = parsedCaption || '';
+            lightboxCaption.style.display = parsedCaption ? 'block' : 'none';
         } else {
             lightboxCaption.innerHTML = '';
             lightboxCaption.style.display = 'none';
@@ -270,15 +284,7 @@ document.addEventListener('DOMContentLoaded', function() {
             event.preventDefault();
             const lightboxId = this.getAttribute('data-mc-lightbox-id');
             lightbox.dataset.imageSrc = this.getAttribute('data-mc-image-src');
-            let captionData = this.getAttribute('data-mc-caption');
-            
-            try {
-                const caption = JSON.parse(captionData);
-                lightbox.dataset.mcCaption = caption;
-            } catch (e) {
-                lightbox.dataset.mcCaption = captionData || '';
-            }
-            
+            lightbox.dataset.mcCaption = this.getAttribute('data-mc-caption') || '';
             currentLightboxId = lightboxId;
             openLightbox(null, -1);
         });
