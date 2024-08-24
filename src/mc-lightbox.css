@@ -37,7 +37,7 @@
   box-sizing: border-box;
   overflow-wrap: break-word;
   word-wrap: break-word;
-  line-height: .9;
+  line-height: 1.4;
 }
 
 /* Styles for the lightbox */
