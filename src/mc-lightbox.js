@@ -220,6 +220,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    document.querySelectorAll('.mc-lightbox-link').forEach(link => {
+        const lightboxId = link.getAttribute('data-mc-lightbox-id');
+        link.href = `?lightbox=${encodeURIComponent(lightboxId)}`;
+    });
+
     // Handle URL state on page load
     window.addEventListener('load', () => {
         const params = new URLSearchParams(window.location.search);
