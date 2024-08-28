@@ -65,8 +65,14 @@ document.addEventListener('DOMContentLoaded', function() {
     function showNextImage() {
         if (currentIndex < currentGallery.length - 1) {
             currentIndex++;
+            lightboxLoader.style.display = 'block';
+            lightboxInner.style.display = 'none';
             lightboxImg.src = currentGallery[currentIndex].getAttribute('data-mc-image-src');
             updateCaption(currentGallery[currentIndex]?.dataset.mcCaption);
+            lightboxImg.onload = function() {
+                lightboxLoader.style.display = 'none'; // Hide the loader
+                lightboxInner.style.display = 'block'; // Show the content
+            };
             updateNavigationButtons();
             updateURL();
         }
@@ -75,8 +81,14 @@ document.addEventListener('DOMContentLoaded', function() {
     function showPrevImage() {
         if (currentIndex > 0) {
             currentIndex--;
+            lightboxLoader.style.display = 'block';
+            lightboxInner.style.display = 'none';
             lightboxImg.src = currentGallery[currentIndex].getAttribute('data-mc-image-src');
             updateCaption(currentGallery[currentIndex]?.dataset.mcCaption);
+            lightboxImg.onload = function() {
+                lightboxLoader.style.display = 'none'; // Hide the loader
+                lightboxInner.style.display = 'block'; // Show the content
+            };
             updateNavigationButtons();
             updateURL();
         }
