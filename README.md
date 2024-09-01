@@ -1,3 +1,5 @@
 # MC Lightbox
 
-Vanilla JS lightbox for image galleries. Also allows linking text to images.
+Vanilla JS lightweight lightbox for image galleries. Also allows linking text to images.
+
+![Screenshot](screenshot.png)
