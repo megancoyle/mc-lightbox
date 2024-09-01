@@ -9,46 +9,81 @@
   </head>
   <body>
     <h1>Demo MC Lightbox Gallery</h1>
-    <p>Vanilla JS lightbox gallery that allows you to link gallery images and standalone text.</p>
-
-<!-- Gallery 1 -->
-<div class="mc-gallery" data-mc-lightbox-id="lightbox1">
-  <div class="mc-gallery-thumbnail" tabindex="0">
-    <img src="https://place-hold.it/100x100" alt="Image 1" data-mc-image-src="https://place-hold.it/580x600" data-mc-caption="<h1>Heading</h1><p>Here's some text<br><a href='http://google.com' target='_blank'><strong>Here's a link</strong></a></p><p>Here's a new paragraph</p>" />
-    <div class="mc-gallery-overlay">
-      <div class="mc-gallery-overlay-caption">Heading</div>
+    <p>
+      Vanilla JS lightbox gallery that allows you to link gallery images and
+      standalone text.
+    </p>
+    <h2>Gallery 1</h2>
+    <div class="mc-gallery" data-mc-lightbox-id="lightbox1">
+      <div class="mc-gallery-thumbnail" tabindex="0">
+        <img
+          src="https://place-hold.it/100x100"
+          alt="Image 1"
+          data-mc-image-src="https://place-hold.it/580x600"
+          data-mc-caption="<h1>Heading</h1><p>Here's some text<br><a href='http://google.com' target='_blank'><strong>Here's a link</strong></a></p><p>Here's a new paragraph</p>"
+        />
+        <div class="mc-gallery-overlay">
+          <div class="mc-gallery-overlay-caption">Heading</div>
+        </div>
+      </div>
+      <div class="mc-gallery-thumbnail" tabindex="0">
+        <img
+          src="https://place-hold.it/100x100"
+          alt="Image 2"
+          data-mc-image-src="https://place-hold.it/580x600"
+          data-mc-caption="Another <em>caption</em>"
+        />
+        <div class="mc-gallery-overlay">
+          <div class="mc-gallery-overlay-caption">Another caption</div>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="mc-gallery-thumbnail" tabindex="0">
-    <img src="https://place-hold.it/100x100" alt="Image 2" data-mc-image-src="https://place-hold.it/580x600" data-mc-caption="Another <em>caption</em>" />
-    <div class="mc-gallery-overlay">
-      <div class="mc-gallery-overlay-caption">Another caption</div>
+
+    <h2>Gallery 2</h2>
+    <div class="mc-gallery" data-mc-lightbox-id="lightbox2">
+      <div class="mc-gallery-thumbnail" tabindex="0">
+        <img
+          src="https://place-hold.it/100x100"
+          alt="Image 3"
+          data-mc-image-src="https://place-hold.it/580x600"
+          data-mc-caption="&lt;h1&gt;Heading&lt;/h1&gt;&lt;p&gt;Here&#039;s some text&lt;br&gt;&lt;a href=&#039;http://google.com&#039; target=&#039;_blank&#039;&gt;&lt;strong&gt;Here&#039;s a link&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;Here&#039;s a new paragraph&lt;/p&gt;"
+        />
+      </div>
+      <div class="mc-gallery-thumbnail" tabindex="0">
+        <img
+          src="https://place-hold.it/100x100"
+          alt="Image 4"
+          data-mc-image-src="https://place-hold.it/580x600"
+        />
+      </div>
     </div>
-  </div>
-</div>
+    <h2>Linked text</h2>
+    <a
+      href="#"
+      class="mc-lightbox-link"
+      data-mc-image-src="https://place-hold.it/400x600"
+      data-mc-lightbox-id="lightbox3"
+      data-mc-caption="Standalone <strong>Image</strong> Caption Aliquam elementum lorem vitae vestibulum consectetur. Ut quis augue mattis, euismod enim lobortis, hendrerit felis. Nulla facilisi. Vestibulum non turpis eu erat convallis pellentesque. Fusce congue sit amet metus in ornare. Etiam volutpat quis eros ac tristique. Donec pellentesque elit ut nibh maximus, ac tristique purus mollis. Cras mattis nisl in laoreet luctus. Mauris sit amet vestibulum lectus. Duis sed purus et nisi ornare"
+      >Open Standalone Image</a
+    >
+    <a
+      href="#"
+      class="mc-lightbox-link"
+      data-mc-image-src="https://place-hold.it/580x600"
+      data-mc-lightbox-id="anotherlink"
+      >Linked Image</a
+    >
 
-<!-- Gallery 2 -->
-<div class="mc-gallery" data-mc-lightbox-id="lightbox2">
-  <div class="mc-gallery-thumbnail" tabindex="0">
-    <img src="https://place-hold.it/100x100" alt="Image 3" data-mc-image-src="https://place-hold.it/580x600" data-mc-caption="&lt;h1&gt;Heading&lt;/h1&gt;&lt;p&gt;Here&#039;s some text&lt;br&gt;&lt;a href=&#039;http://google.com&#039; target=&#039;_blank&#039;&gt;&lt;strong&gt;Here&#039;s a link&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;&lt;p&gt;Here&#039;s a new paragraph&lt;/p&gt;" />
-  </div>
-  <div class="mc-gallery-thumbnail" tabindex="0">
-    <img src="https://place-hold.it/100x100" alt="Image 4" data-mc-image-src="https://place-hold.it/580x600" />
-  </div>
-</div>
-
-<a href="#" class="mc-lightbox-link" data-mc-image-src="https://place-hold.it/400x600" data-mc-lightbox-id="lightbox3" data-mc-caption="Standalone <strong>Image</strong> Caption Aliquam elementum lorem vitae vestibulum consectetur. Ut quis augue mattis, euismod enim lobortis, hendrerit felis. Nulla facilisi. Vestibulum non turpis eu erat convallis pellentesque. Fusce congue sit amet metus in ornare. Etiam volutpat quis eros ac tristique. Donec pellentesque elit ut nibh maximus, ac tristique purus mollis. Cras mattis nisl in laoreet luctus. Mauris sit amet vestibulum lectus. Duis sed purus et nisi ornare">Open Standalone Image</a>
-<a href="#" class="mc-lightbox-link" data-mc-image-src="https://place-hold.it/580x600" data-mc-lightbox-id="anotherlink">Linked Image</a>
-
-<!-- Lightbox (Single for all galleries) -->
-<div id="mc-lightbox" class="mc-lightbox">
-  <div id="mc-lightbox-inner">
-    <div class="mc-controls">
-      <span class="mc-lightbox-nav prev" tabindex="0">❮</span><span class="mc-lightbox-nav next" tabindex="0">❯</span>
-      <span class="mc-lightbox-close" tabindex="0">✖</span>
+    <!-- Lightbox (Single for all galleries) -->
+    <div id="mc-lightbox" class="mc-lightbox">
+      <div id="mc-lightbox-inner">
+        <div class="mc-controls">
+          <span class="mc-lightbox-nav prev" tabindex="0">❮</span
+          ><span class="mc-lightbox-nav next" tabindex="0">❯</span>
+          <span class="mc-lightbox-close" tabindex="0">✖</span>
+        </div>
+        <img class="mc-lightbox-img" src="" alt="Lightbox Image" />
+      </div>
     </div>
-    <img class="mc-lightbox-img" src="" alt="Lightbox Image">
-  </div>
-</div>
   </body>
 </html>
